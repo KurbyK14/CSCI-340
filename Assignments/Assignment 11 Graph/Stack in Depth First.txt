@@ -1,0 +1,26 @@
+/*std::stack<int> s;
+
+    s.push(v);
+    visited[v] = true;
+
+    while(!s.empty())
+    {
+        int x = s.top();
+
+        if(adj_list[x].empty())
+        {
+            s.pop();
+        }
+        else
+        {
+            int u = adj_list[x].front();
+            adj_list[x].pop_front();
+
+            if(visited[u])
+            {
+                s.push(u);
+                visited[u] = true;
+            }
+        }
+    }
+    */
