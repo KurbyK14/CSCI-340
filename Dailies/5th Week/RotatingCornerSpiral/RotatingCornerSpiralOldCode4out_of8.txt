@@ -1,0 +1,165 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+std::vector<int> RotatingCornerSpiral(std::vector<std::vector<int>> &m)
+{
+    int num_rows = m.size();//number of rows of m;
+    int num_cols = m[0].size();//number of columns of m
+    int square_size = num_rows * num_cols;//square_size is the number of elements in the square
+
+    //check if m is empty or not a square
+    if(num_rows != num_cols)
+    {
+        return std::vector<int>(0);
+    }
+    //check if square has only one element
+    else if(num_rows && num_cols == 1)
+    {
+        return m[0];
+    }
+
+    std::vector<int> spiral_m;//vector to store the spiral
+    std::vector<std::vector<bool>> bool_m(m.size(), std::vector<bool>(m[0].size(), false));//vector to keep track of which elements have been visited
+
+    int top_left = m[0][0], top_right = m[0][m[0].size() - 1],//top_left is the top left corner, top_right is the top right corner
+        bottom_left = m[m.size() - 1][0], bottom_right = m[m.size() - 1][m[m.size() - 1].size() - 1];//bottom_left is the bottom left corner, bottom_right is the bottom right corner
+
+    int k = 0;//k is the number of elements that have been visited
+
+    //int l = (num_rows * 2) + ((num_rows - 2) * 2);//l is the number of elements in the outer shell of the square
+    //int m = l/2;//m is the number of elements in the inner shell of the square
+
+    //Add the corners to the vector
+    spiral_m.push_back(top_left);
+    bool_m[0][0] = true;
+
+    spiral_m.push_back(top_right);
+    bool_m[0][m[0].size() - 1] = true;
+
+    spiral_m.push_back(bottom_right);
+    bool_m[m.size() - 1][m[m.size() - 1].size() - 1] = true;
+
+    spiral_m.push_back(bottom_left);
+    bool_m[m.size() - 1][0] = true;
+
+    //While loop to iterate through the square
+    while(k < square_size)
+    {
+        //Traverse the top row to the right
+        for(int col = 1; col < num_cols - 1; col++)
+        {
+            if(bool_m[0][col] == false)
+            {
+                spiral_m.push_back(m[0][col]);
+                bool_m[0][col] = true;
+            }
+        }
+
+        //Traverse the right column to the bottom
+        for(int row = 1; row < num_rows - 1; row++)
+        {
+            if(bool_m[row][num_cols - 1] == false)
+            {
+                spiral_m.push_back(m[row][num_cols - 1]);
+                bool_m[row][num_cols - 1] = true;
+            }
+        }
+
+        //Traverse the bottom row to the left
+        for(int col = num_cols - 2; col > 0; col--)
+        {
+            if(bool_m[num_rows - 1][col] == false)
+            {
+                spiral_m.push_back(m[num_rows - 1][col]);
+                bool_m[num_rows - 1][col] = true;
+            }
+        }
+
+        //Traverse the left column to the top
+        for(int row = num_rows - 2; row > 0; row--)
+        {
+            if(bool_m[row][0] == false)
+            {
+                spiral_m.push_back(m[row][0]);
+                bool_m[row][0] = true;
+            }
+        }
+
+        k++;
+    }
+
+    //If the square is odd or has greater than 1 element, add the middle element to the vector
+    if(num_rows % 2 == 1 && num_rows * num_rows > 1)
+    {
+        spiral_m.push_back(m[num_rows/2][num_rows/2]);
+    }
+
+    return spiral_m;
+}
+
+int main() 
+{
+    std::vector<std::vector<int>> m {{1, 2}, {3, 4}};
+    std::vector<int> spiral = RotatingCornerSpiral(m);
+
+    std::cout << "Diff 1: ";
+    for (int x : spiral) {
+        std::cout << x << " ";
+    }
+    // Expected Output: 1 2 4 3
+    std::cout << std::endl;
+
+    std::vector<std::vector<int>> m_1 {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    std::vector<int> spiral_1 = RotatingCornerSpiral(m_1);
+
+    std::cout << "Diff 2: ";
+    for (int x : spiral_1) {
+        std::cout << x << " ";
+    }
+    // Expected Output: 1 3 9 7 2 6 8 4 5
+    std::cout << std::endl;
+
+    std::vector<std::vector<int>> m_2 {{100}};
+    std::vector<int> spiral_2 = RotatingCornerSpiral(m_2);
+
+    std::cout << "Diff 3: ";
+    for (int x : spiral_2) {
+        std::cout << x << " ";
+    }
+    // Expected Output: 100
+    std::cout << std::endl;
+
+    std::vector<std::vector<int>> m_3 {{1, 2, 3, 4, 5, 6}, {13, 14, 15, 16, 17, 18}, {7, 8, 9, 10, 11, 12}, {19, 20, 21, 22, 23, 24}, {31, 32, 33, 34, 35, 36}, {25, 26, 27, 28, 29, 30}};
+    std::vector<int> spiral_3 = RotatingCornerSpiral(m_3);
+
+    std::cout << "Diff 4: ";
+    for (int x : spiral_3) {
+        std::cout << x << " ";
+    }
+    // Expected Output: 1 6 30 25 2 18 29 31 3 12 28 19 4 24 27 7 5 36 26 13 14 17 35 32 15 11 34 20 16 23 33 8 9 10 22 21
+    std::cout << std::endl;
+
+    std::vector<std::vector<int>> m_4 {{1, 2, 3, 4, 5, 6, 7}, {15, 16, 17, 18, 19, 20, 21}, {8, 9, 10, 11, 12, 13, 14}, {29, 30, 31, 32, 33, 34, 35}, {22, 23, 24, 25, 26, 27, 28}, {43, 44, 45, 46, 47, 48, 49}, {36, 37, 38, 39, 40, 41, 42}};
+    std::vector<int> spiral_4 = RotatingCornerSpiral(m_4);
+
+    std::cout << "Diff 5: ";
+    for (int x : spiral_4) {
+        std::cout << x << " ";
+    }
+    // Expected Output: 1 7 42 36 2 21 41 43 3 14 40 22 4 35 39 29 5 28 38 8 6 49 37 15 16 20 48 44 17 13 47 23 18 34 46 30 19 27 45 9 10 12 26 24 11 33 25 31 32 
+    std::cout << std::endl;
+
+
+    std::vector<std::vector<int>> m_5 {{1, 2, 3}, {4, 5, 6}};
+    std::vector<int> spiral_5 = RotatingCornerSpiral(m_5);
+
+    std::cout << "Diff 6: ";
+    for (int x : spiral_5) {
+        std::cout << x << " ";
+    }
+    // Expected Output: Nothing
+    std::cout << std::endl;
+
+    return 0;
+}
