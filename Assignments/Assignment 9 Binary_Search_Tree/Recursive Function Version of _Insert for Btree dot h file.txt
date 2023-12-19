@@ -1,0 +1,12 @@
+if(node == nullptr)//If node is nullptr
+    {
+        node = new Node<T>(x);//Create new node
+    }
+    else if(rnd() == left_side)//If random side is left
+    {
+        _Insert(node->left, x);//Insert node on left side
+    }
+    else//If random side is right
+    {
+        _Insert(node->right, x);//Insert node on right side
+    }

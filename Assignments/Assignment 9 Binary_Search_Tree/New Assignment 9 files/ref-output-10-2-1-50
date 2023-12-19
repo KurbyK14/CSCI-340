@@ -1,0 +1,126 @@
+Testing with 10 elements between 1 and 50 and using 2 as the random seed.
+Generated: [ 41, 20, 39, 26, 12, 49, 15, 28, 46, 28 ]
+Inserting generated numbers into tree in order:
+    After inserting all
+    -------------------
+    Size: 9 ; Height: 5
+    Inorder: 12 15* 20 26 28* 39 41 46* 49 
+
+Starting pass 1
+  S/R Step  0: val(41) - Leaf Not Found - Not Removed
+  S/R Step  1: val(20) - Leaf Not Found - Not Removed
+  S/R Step  2: val(39) - Leaf Not Found - Not Removed
+  S/R Step  3: val(26) - Leaf Not Found - Not Removed
+  S/R Step  4: val(12) - Leaf Not Found - Not Removed
+  S/R Step  5: val(49) - Leaf Not Found - Not Removed
+  S/R Step  6: val(15) - Leaf Found - Removed
+    Tree after removing 15 for step 6
+    ---------------------------------
+    Size: 8 ; Height: 5
+    Inorder: 12* 20 26 28* 39 41 46* 49 
+
+  S/R Step  7: val(28) - Leaf Found - Removed
+    Tree after removing 28 for step 7
+    ---------------------------------
+    Size: 7 ; Height: 4
+    Inorder: 12* 20 26* 39 41 46* 49 
+
+  S/R Step  8: val(46) - Leaf Found - Removed
+    Tree after removing 46 for step 8
+    ---------------------------------
+    Size: 6 ; Height: 4
+    Inorder: 12* 20 26* 39 41 49* 
+
+  S/R Step  9: val(28) - Leaf Not Found - Not Removed
+  All removal attempts finished for pass 1
+    Tree after removal pass 1
+    -------------------------
+    Size: 6 ; Height: 4
+    Inorder: 12* 20 26* 39 41 49* 
+
+Starting pass 2
+  S/R Step  0: val(41) - Leaf Not Found - Not Removed
+  S/R Step  1: val(20) - Leaf Not Found - Not Removed
+  S/R Step  2: val(39) - Leaf Not Found - Not Removed
+  S/R Step  3: val(26) - Leaf Found - Removed
+    Tree after removing 26 for step 3
+    ---------------------------------
+    Size: 5 ; Height: 3
+    Inorder: 12* 20 39* 41 49* 
+
+  S/R Step  4: val(12) - Leaf Found - Removed
+    Tree after removing 12 for step 4
+    ---------------------------------
+    Size: 4 ; Height: 3
+    Inorder: 20 39* 41 49* 
+
+  S/R Step  5: val(49) - Leaf Found - Removed
+    Tree after removing 49 for step 5
+    ---------------------------------
+    Size: 3 ; Height: 3
+    Inorder: 20 39* 41 
+
+  S/R Step  6: val(15) - Leaf Not Found - Not Removed
+  S/R Step  7: val(28) - Leaf Not Found - Not Removed
+  S/R Step  8: val(46) - Leaf Not Found - Not Removed
+  S/R Step  9: val(28) - Leaf Not Found - Not Removed
+  All removal attempts finished for pass 2
+    Tree after removal pass 2
+    -------------------------
+    Size: 3 ; Height: 3
+    Inorder: 20 39* 41 
+
+Starting pass 3
+  S/R Step  0: val(41) - Leaf Not Found - Not Removed
+  S/R Step  1: val(20) - Leaf Not Found - Not Removed
+  S/R Step  2: val(39) - Leaf Found - Removed
+    Tree after removing 39 for step 2
+    ---------------------------------
+    Size: 2 ; Height: 2
+    Inorder: 20* 41 
+
+  S/R Step  3: val(26) - Leaf Not Found - Not Removed
+  S/R Step  4: val(12) - Leaf Not Found - Not Removed
+  S/R Step  5: val(49) - Leaf Not Found - Not Removed
+  S/R Step  6: val(15) - Leaf Not Found - Not Removed
+  S/R Step  7: val(28) - Leaf Not Found - Not Removed
+  S/R Step  8: val(46) - Leaf Not Found - Not Removed
+  S/R Step  9: val(28) - Leaf Not Found - Not Removed
+  All removal attempts finished for pass 3
+    Tree after removal pass 3
+    -------------------------
+    Size: 2 ; Height: 2
+    Inorder: 20* 41 
+
+Starting pass 4
+  S/R Step  0: val(41) - Leaf Not Found - Not Removed
+  S/R Step  1: val(20) - Leaf Found - Removed
+    Tree after removing 20 for step 1
+    ---------------------------------
+    Size: 1 ; Height: 1
+    Inorder: 41* 
+
+  S/R Step  2: val(39) - Leaf Not Found - Not Removed
+  S/R Step  3: val(26) - Leaf Not Found - Not Removed
+  S/R Step  4: val(12) - Leaf Not Found - Not Removed
+  S/R Step  5: val(49) - Leaf Not Found - Not Removed
+  S/R Step  6: val(15) - Leaf Not Found - Not Removed
+  S/R Step  7: val(28) - Leaf Not Found - Not Removed
+  S/R Step  8: val(46) - Leaf Not Found - Not Removed
+  S/R Step  9: val(28) - Leaf Not Found - Not Removed
+  All removal attempts finished for pass 4
+    Tree after removal pass 4
+    -------------------------
+    Size: 1 ; Height: 1
+    Inorder: 41* 
+
+Starting pass 5
+  S/R Step  0: val(41) - Leaf Found - Removed
+  Last remaining node removed, ending loop.
+  All removal attempts finished for pass 5
+    Tree after removal pass 5
+    -------------------------
+    Size: 0 ; Height: 0
+    Inorder: 
+
+Nothing remains to be removed. Finished.

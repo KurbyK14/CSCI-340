@@ -1,0 +1,39 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <algorithm>
+#include <utility>
+#include <iomanip>
+
+void get_words(std::map<std::string, int> &wordMap)
+{
+    std::string word;
+    while (std::cin >> word)
+    {
+        std::transform(word.begin(), word.end(), word.begin(), ::tolower);
+        word.erase(std::remove_if(word.begin(), word.end(), ::ispunct), word.end());
+        wordMap[word]++;
+    }
+}
+
+void print_words(std::map<std::string, int> &wordMap)
+{
+    for (auto &pair : wordMap)
+    {
+        std::cout << std::setw(15) << std::left << pair.first << std::setw(5) << std::right << pair.second << std::endl;
+    }
+}
+
+void clean_entry(std::string&, string&)
+{
+    std::transform(word.begin(), word.end(), word.begin(), ::tolower);
+    word.erase(std::remove_if(word.begin(), word.end(), ::ispunct), word.end());
+}
+
+int main()
+{
+    std::map<std::string, int> wordMap;
+    get_words(wordMap);
+    print_words(wordMap);
+    return 0;
+}
